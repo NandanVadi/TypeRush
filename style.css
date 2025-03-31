@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    color: #ffffff;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #533483);
+    background-size: 300% 300%;
+    animation: gradientShift 8s ease infinite;
+    position: relative;
+}
+
+/* Background Animation */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Floating Particles */
+.particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.particle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: floatParticles 8s infinite linear;
+}
+
+@keyframes floatParticles {
+    0% { transform: translateY(100vh) translateX(0); opacity: 0.3; }
+    50% { opacity: 0.8; }
+    100% { transform: translateY(-10vh) translateX(50px); opacity: 0; }
+}
+
+/* Generate multiple particles */
+.particle:nth-child(1) { left: 10%; animation-duration: 6s; }
+.particle:nth-child(2) { left: 25%; animation-duration: 7s; }
+.particle:nth-child(3) { left: 40%; animation-duration: 5s; }
+.particle:nth-child(4) { left: 55%; animation-duration: 6.5s; }
+.particle:nth-child(5) { left: 70%; animation-duration: 7.5s; }
+.particle:nth-child(6) { left: 85%; animation-duration: 5.5s; }
+
+/* Navbar */
+nav {
+    position: absolute;
+    top: 10px;
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    z-index: 2;
+}
+
+nav h1 {
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 15px rgba(255, 255, 255, 0.6);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    text-decoration: none;
+    font-size: 1.3rem;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 8px;
+    transition: background 0.3s ease, transform 0.2s;
+}
+
+nav ul li a:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+/* Main Container - Scaled Up */
+.container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 14px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.15);
+    position: relative;
+    z-index: 2;
+    width: 80%;
+    max-width: 900px;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+p {
+    font-size: 1.5rem;
+}
+
+/* Buttons - Styled & Scaled Up */
+button {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    padding: 18px 50px;
+    font-size: 1.7rem;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.3s;
+}
+
+button:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.4);
+}
+
+/* Intro Page Start Typing Button */
+.intro-button {
+    display: inline-block;
+    padding: 18px 50px;
+    font-size: 1.7rem;
+    color: white;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.2s, background 0.3s;
+    border: none;
+}
+
+.intro-button:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.4);
+}
+
+/* Textarea - Scaled Up */
+textarea {
+    width: 90%;
+    height: 200px;
+    font-size: 1.8rem;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 15px;
+    resize: none;
+    outline: none;
+}

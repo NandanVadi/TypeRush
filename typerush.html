@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TypeRush - Typing Test</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="particles"></div>
+    <nav class="navbar">
+        <div class="logo">TypeRush</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Leaderboard</a></li>
+            <li><a href="#">Contact Us</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <h2>Typing Speed Test</h2>
+        <p id="sentence">Click 'Start' to begin!</p>
+        <textarea id="typing-area" disabled></textarea>
+        <button id="start-button">Start</button>
+        <div id="results">
+            ⏳ <span id="timer">30</span>s left! <br>
+            ⚡ Speed: <span id="wpm">0</span> WPM <br>
+            🎯 Accuracy: <span id="accuracy">0.00</span>%
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
