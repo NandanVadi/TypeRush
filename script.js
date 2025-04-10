@@ -100,7 +100,7 @@ function checkAccuracy() {
     speedDisplay.innerText = isNaN(wpm) ? "0" : wpm;
 
     // Color feedback
-    typingArea.style.color = mistake ? "red" : "white";
+    typingArea.style.color = mistake ? "red" : "lightgreen";
 }
 
 function endTest() {
