@@ -12,6 +12,7 @@ let timerInterval;
 let startTime;
 let typedWords = 0;
 let errors = 0;
+let streak = 0;
 let currentSentence = "";
 let typedSentence = "";
 
@@ -21,11 +22,11 @@ const startButton = document.getElementById("start-button");
 const timerDisplay = document.getElementById("timer");
 const speedDisplay = document.getElementById("wpm");
 const accuracyDisplay = document.getElementById("accuracy");
+const streakDisplay = document.getElementById("streak");
 
 function startTest() {
     resetTest();
-    currentSentence = getRandomSentence();
-    sentenceDisplay.innerText = currentSentence;
+    loadNewSentence();
     typingArea.disabled = false;
     typingArea.focus();
     startTime = new Date().getTime();
@@ -37,11 +38,14 @@ function resetTest() {
     timer = 30;
     errors = 0;
     typedWords = 0;
+    streak = 0;
     sentenceDisplay.innerText = "Click 'Start' to begin!";
     typingArea.value = "";
     timerDisplay.innerText = timer;
     speedDisplay.innerText = "0";
     accuracyDisplay.innerText = "0.00";
+    streakDisplay.innerText = "0";
+    typingArea.style.color = "#ffffff";
 }
 
 function getRandomSentence() {
@@ -56,34 +60,51 @@ function updateTimer() {
     }
 }
 
+function loadNewSentence() {
+    currentSentence = getRandomSentence();
+    sentenceDisplay.innerText = currentSentence;
+    typingArea.value = "";
+}
+
 typingArea.addEventListener("input", () => {
     typedSentence = typingArea.value;
     checkAccuracy();
+
     if (typedSentence === currentSentence) {
-        typedWords += currentSentence.split(" ").length;
-        currentSentence = getRandomSentence();
-        sentenceDisplay.innerText = currentSentence;
-        typingArea.value = "";
+        typedWords += currentSentence.trim().split(/\s+/).length;
+        streak++;
+        streakDisplay.innerText = streak;
+        loadNewSentence();
     }
 });
 
 function checkAccuracy() {
     let correct = 0;
+    let mistake = false;
+
     for (let i = 0; i < typedSentence.length; i++) {
         if (typedSentence[i] === currentSentence[i]) {
             correct++;
         } else {
-            errors++;
+            mistake = true;
         }
     }
-    let accuracy = (correct / typedSentence.length) * 100 || 0;
+
+    let accuracy = typedSentence.length > 0 ? (correct / typedSentence.length) * 100 : 0;
+    accuracy = Math.min(accuracy, 100); // Limit to 100%
     accuracyDisplay.innerText = accuracy.toFixed(2);
+
+    // WPM update
+    const elapsed = (new Date().getTime() - startTime) / 60000;
+    const wpm = Math.round(typedWords / elapsed);
+    speedDisplay.innerText = isNaN(wpm) ? "0" : wpm;
+
+    // Color feedback
+    typingArea.style.color = mistake ? "red" : "white";
 }
 
 function endTest() {
     clearInterval(timerInterval);
-    let wpm = Math.round(typedWords / (30 / 60)) || 0;
-    speedDisplay.innerText = wpm;
     typingArea.disabled = true;
 }
 
