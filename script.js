@@ -10,8 +10,9 @@ const sentences = [
 let timer = 30;
 let timerInterval;
 let startTime;
+let totalTypedCharacters = 0;
+let totalCorrectCharacters = 0;
 let typedWords = 0;
-let errors = 0;
 let streak = 0;
 let currentSentence = "";
 let typedSentence = "";
@@ -36,7 +37,8 @@ function startTest() {
 function resetTest() {
     clearInterval(timerInterval);
     timer = 30;
-    errors = 0;
+    totalTypedCharacters = 0;
+    totalCorrectCharacters = 0;
     typedWords = 0;
     streak = 0;
     sentenceDisplay.innerText = "Click 'Start' to begin!";
@@ -46,6 +48,7 @@ function resetTest() {
     accuracyDisplay.innerText = "0.00";
     streakDisplay.innerText = "0";
     typingArea.style.color = "#ffffff";
+    typingArea.disabled = true;
 }
 
 function getRandomSentence() {
@@ -64,6 +67,7 @@ function loadNewSentence() {
     currentSentence = getRandomSentence();
     sentenceDisplay.innerText = currentSentence;
     typingArea.value = "";
+    typedSentence = "";
 }
 
 typingArea.addEventListener("input", () => {
@@ -79,27 +83,30 @@ typingArea.addEventListener("input", () => {
 });
 
 function checkAccuracy() {
+    const typed = typedSentence;
+    const expected = currentSentence;
+
     let correct = 0;
     let mistake = false;
 
-    for (let i = 0; i < typedSentence.length; i++) {
-        if (typedSentence[i] === currentSentence[i]) {
+    for (let i = 0; i < typed.length; i++) {
+        if (typed[i] === expected[i]) {
             correct++;
         } else {
             mistake = true;
         }
     }
 
-    let accuracy = typedSentence.length > 0 ? (correct / typedSentence.length) * 100 : 0;
-    accuracy = Math.min(accuracy, 100); // Limit to 100%
+    totalTypedCharacters++;
+    totalCorrectCharacters = correct;
+
+    const accuracy = totalTypedCharacters > 0 ? (totalCorrectCharacters / totalTypedCharacters) * 100 : 0;
     accuracyDisplay.innerText = accuracy.toFixed(2);
 
-    // WPM update
-    const elapsed = (new Date().getTime() - startTime) / 60000;
-    const wpm = Math.round(typedWords / elapsed);
-    speedDisplay.innerText = isNaN(wpm) ? "0" : wpm;
+    const elapsedMinutes = (new Date().getTime() - startTime) / 60000;
+    const wpm = Math.round(typedWords / elapsedMinutes);
+    speedDisplay.innerText = isNaN(wpm) || !isFinite(wpm) ? "0" : wpm;
 
-    // Color feedback
     typingArea.style.color = mistake ? "red" : "lightgreen";
 }
 
