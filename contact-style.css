@@ -109,3 +109,21 @@ button:hover {
     font-size: 1.1rem;
     box-shadow: 0 0 10px rgba(188, 188, 188, 0.973);
 }
+/* Grid layout for contact page */
+body {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    min-height: 100vh;
+}
+
+.navbar {
+    grid-row: 1;
+}
+
+.contact-container {
+    grid-row: 2;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    text-align: center;
+}
