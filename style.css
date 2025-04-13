@@ -11,7 +11,7 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #533483);
+    background: linear-gradient(-45deg, #010106, #16213e, #0f3460, #533483);
     background-size: 300% 300%;
     animation: gradientShift 8s ease infinite;
     position: relative;
@@ -174,4 +174,23 @@ textarea {
     padding: 15px;
     resize: none;
     outline: none;
+}
+
+/* Grid layout for all main pages */
+body {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    min-height: 100vh;
+}
+
+nav {
+    grid-row: 1;
+}
+
+.container {
+    grid-row: 2;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: 20px;
 }
