@@ -1,35 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TypeRush - Typing Test</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Typing Speed Test</title>
+  <style>
+    body {
+      background: linear-gradient(-0deg, #5d4040, #8b0000, #000000, #000000);
+      animation: gradientShift 8s ease infinite;
+      color: white;
+      font-family: 'Courier New', monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+    #displayText {
+      font-size: 24px;
+      margin: 20px;
+    }
+    .correct {
+      color: lightgreen;
+    }
+    .incorrect {
+      color: red;
+    }
+    input {
+      padding: 10px;
+      width: 60%;
+      font-size: 18px;
+    }
+    .stats {
+      display: flex;
+      gap: 20px;
+      margin-top: 10px;
+      padding-bottom: 5px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-    <div class="particles"></div>
-    <nav class="navbar">
-        <div class="logo">TypeRush</div>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="tips.html">TypingTips</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
-        </ul>
-    </nav>
-    
-    <div class="container">
-        <h2>Typing Speed Test</h2>
-        <p id="sentence">Click 'Start' to begin!</p>
-        <textarea id="typing-area" disabled></textarea>
-        <button id="start-button">Start</button>
-        <div id="results">
-            ⏳ <span id="timer">30</span>s left! <br>
-            ⚡ Speed: <span id="wpm">0</span> WPM <br>
-            🎯 Accuracy: <span id="accuracy">0.00</span>% <br>
-            🔥 Streak: <span id="streak">0</span>
-        </div>
-    </div>
 
-    <script src="script.js"></script>
+  <h1>TypeRush</h1>
+  <div id="displayText">Click 'Start' to begin!</div>
+  <input type="text" id="typingInput" disabled />
+
+  <div class="stats">
+    <div><span class="icon">⏱</span> <span class="label">Time:</span> <span id="timer">30</span></div>
+    <div><span class="icon">⚡</span> <span class="label">WPM:</span> <span id="wpm">0</span></div>
+    <div><span class="icon">🎯</span> <span class="label">Accuracy:</span> <span id="accuracy">0.00</span>%</div>
+    <div><span class="icon">🔥</span> <span class="label">Streak:</span> <span id="streak">0</span></div>
+  </div>
+
+  <button id="start-button">Start</button>
+
+  <script src="script.js"></script>
 </body>
 </html>
